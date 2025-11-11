@@ -29,31 +29,33 @@ export default async function ResultadosPage() {
   const { count: totalVotes } = await supabase.from("votes").select("*", { count: "exact", head: true })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
       {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-slate-200/50 bg-gradient-to-r from-slate-900/95 via-blue-950/95 to-slate-900/95 backdrop-blur-sm sticky top-0 z-10 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Link
                 href="/"
-                className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+                className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-800 transition-colors"
               >
-                <ArrowLeft className="h-5 w-5 text-gray-600" />
+                <ArrowLeft className="h-5 w-5 text-slate-100" />
               </Link>
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600">
-                  <TrendingUp className="h-6 w-6 text-white" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 shadow-md">
+                  <TrendingUp className="h-6 w-6 text-slate-900" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">Resultados em Tempo Real</h1>
-                  <p className="text-sm text-gray-600">Acompanhe a apuração ao vivo</p>
+                  <h1 className="text-xl font-bold text-amber-400">
+                    Resultados em Tempo Real
+                  </h1>
+                  <p className="text-sm text-slate-300">Acompanhe a apuração ao vivo</p>
                 </div>
               </div>
             </div>
             <Link
               href="/auth/login"
-              className="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+              className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 hover:from-amber-400 hover:to-yellow-400 font-semibold rounded-lg transition-all hover:shadow-lg"
             >
               Admin
             </Link>

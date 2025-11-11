@@ -47,11 +47,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <Link
           href="/"
-          className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-6"
+          className="inline-flex items-center text-sm text-slate-700 hover:text-slate-900 mb-6"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Voltar para início
@@ -60,11 +60,13 @@ export default function LoginPage() {
         <Card>
           <CardHeader className="space-y-1">
             <div className="flex items-center justify-center mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600">
-                <LogIn className="h-6 w-6 text-white" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-slate-900 to-blue-950 shadow-lg">
+                <LogIn className="h-6 w-6 text-amber-400" />
               </div>
             </div>
-            <CardTitle className="text-2xl font-bold text-center">Login Administrativo</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent">
+              Login Administrativo
+            </CardTitle>
             <CardDescription className="text-center">
               Acesse o painel de administração do sistema de votação
             </CardDescription>
@@ -103,14 +105,18 @@ export default function LoginPage() {
                 />
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-slate-900 to-blue-900 hover:from-slate-800 hover:to-blue-800 text-amber-50 font-semibold shadow-md hover:shadow-lg border border-amber-500/20" 
+                disabled={loading}
+              >
                 {loading ? "Entrando..." : "Entrar"}
               </Button>
             </form>
 
-            <div className="mt-4 text-center text-sm text-gray-600">
+            <div className="mt-4 text-center text-sm text-slate-600">
               Não tem uma conta?{" "}
-              <Link href="/auth/signup" className="text-blue-600 hover:underline">
+              <Link href="/auth/signup" className="text-slate-900 hover:text-blue-900 font-medium hover:underline">
                 Criar conta admin
               </Link>
             </div>

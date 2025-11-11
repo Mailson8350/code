@@ -52,14 +52,16 @@ export function ResultsDashboard({ results: initialResults, totalVotes: initialT
     <div className="space-y-6">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+        <Card className="border-slate-200">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total de Votos</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-slate-900">Total de Votos</CardTitle>
+            <Users className="h-4 w-4 text-slate-700" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-blue-600">{totalVotes}</div>
-            <p className="text-xs text-muted-foreground mt-1">Atualização automática a cada 5s</p>
+            <div className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent">
+              {totalVotes}
+            </div>
+            <p className="text-xs text-slate-600 mt-1">Atualização automática a cada 5s</p>
           </CardContent>
         </Card>
 
@@ -74,16 +76,16 @@ export function ResultsDashboard({ results: initialResults, totalVotes: initialT
           </CardContent>
         </Card>
 
-        <Card className="border-green-200 bg-green-50">
+        <Card className="border-amber-400/50 bg-gradient-to-br from-slate-900 to-blue-950 text-white shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Liderando</CardTitle>
-            <Trophy className="h-4 w-4 text-green-600" />
+            <CardTitle className="text-sm font-medium text-amber-400">Liderando</CardTitle>
+            <Trophy className="h-4 w-4 text-amber-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-700">
+            <div className="text-2xl font-bold text-amber-300">
               {winner?.stage_name ? `${winner.stage_name} (${winner.name})` : winner?.name}
             </div>
-            <p className="text-xs text-green-600 mt-1">
+            <p className="text-xs text-amber-200 mt-1 font-medium">
               {winner?.votes} votos ({totalVotes > 0 ? ((winner?.votes / totalVotes) * 100).toFixed(1) : 0}%)
             </p>
           </CardContent>
@@ -122,12 +124,15 @@ export function ResultsDashboard({ results: initialResults, totalVotes: initialT
                       onClick={() => setSelectedPhoto({ id: candidate.id, name: candidate.name, stageName: candidate.stage_name })}
                     />
                     <div className="min-w-0">
-                      <p className="font-semibold text-gray-900 flex items-center gap-2 truncate">
+                      <p className="font-semibold text-slate-900 flex items-center gap-2 truncate">
                         {candidate.stage_name ? `${candidate.stage_name} (${candidate.name})` : candidate.name}
-                        {isLeader && <Trophy className="h-4 w-4 text-yellow-500 flex-shrink-0" />}
+                        {isLeader && <Trophy className="h-4 w-4 text-amber-500 flex-shrink-0" />}
                       </p>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Badge variant={isLeader ? "default" : "outline"} className={isLeader ? "bg-green-600" : ""}>
+                      <div className="flex items-center gap-2 text-sm text-slate-700">
+                        <Badge 
+                          variant={isLeader ? "default" : "outline"} 
+                          className={isLeader ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 border-amber-400/50 font-bold" : "border-slate-300 text-slate-700"}
+                        >
                           {candidate.number}
                         </Badge>
                         {candidate.city && <span className="truncate">{candidate.city}</span>}
@@ -135,11 +140,16 @@ export function ResultsDashboard({ results: initialResults, totalVotes: initialT
                     </div>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <p className="font-bold text-lg text-blue-600">{candidate.votes}</p>
-                    <p className="text-sm text-gray-600">{percentage.toFixed(1)}%</p>
+                    <p className="font-bold text-lg bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent">
+                      {candidate.votes}
+                    </p>
+                    <p className="text-sm text-slate-600">{percentage.toFixed(1)}%</p>
                   </div>
                 </div>
-                <Progress value={percentage} className="h-2" />
+                <Progress 
+                  value={percentage} 
+                  className="h-2 [&>div]:bg-gradient-to-r [&>div]:from-slate-900 [&>div]:to-blue-900" 
+                />
               </div>
             )
           })}

@@ -75,17 +75,19 @@ export function AdminDashboard({ candidates: initialCandidates, totalVotes, user
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
       {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-slate-200/50 bg-gradient-to-r from-slate-900/95 via-blue-950/95 to-slate-900/95 backdrop-blur-sm sticky top-0 z-10 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Painel Administrativo</h1>
-              <p className="text-sm text-gray-600">Logado como: {userEmail}</p>
+              <h1 className="text-2xl font-bold text-amber-400">
+                Painel Administrativo
+              </h1>
+              <p className="text-sm text-slate-300">Logado como: {userEmail}</p>
               <p className="text-sm mt-1">
                 Status da votação:{" "}
-                <span className={isOpen ? "text-green-600 font-medium" : "text-red-600 font-medium"}>
+                <span className={isOpen ? "text-amber-400 font-medium" : "text-red-400 font-medium"}>
                   {isOpen ? "Aberta" : "Encerrada"}
                 </span>
               </p>

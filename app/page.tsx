@@ -1,32 +1,26 @@
 import { VotingSection } from "@/components/voting-section"
-import { CheckCircle } from "lucide-react"
+import { Logo } from "@/components/logo"
 import Link from "next/link"
+import { Trophy, BarChart3 } from "lucide-react"
 
 export default async function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+      <header className="border-b border-slate-200/50 bg-gradient-to-r from-slate-900/95 via-blue-950/95 to-slate-900/95 backdrop-blur-sm sticky top-0 z-10 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600">
-                <CheckCircle className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Sistema de Votação</h1>
-                <p className="text-sm text-gray-600">Eleições 2025</p>
-              </div>
-            </div>
+            <Logo size="md" />
             <div className="flex gap-3">
               <Link
                 href="/resultados"
-                className="px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                className="px-4 py-2 text-sm font-medium text-slate-100 hover:bg-slate-800 rounded-lg transition-all hover:shadow-md flex items-center gap-2"
               >
+                <BarChart3 className="h-4 w-4" />
                 Ver Resultados
               </Link>
               <Link
                 href="/auth/login"
-                className="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 hover:from-amber-400 hover:to-yellow-400 font-semibold rounded-lg transition-all hover:shadow-lg"
               >
                 Admin
               </Link>
@@ -38,8 +32,13 @@ export default async function Home() {
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-balance">Escolha seu candidato</h2>
-            <p className="text-lg text-gray-600 text-pretty">
+            <div className="inline-flex items-center justify-center mb-4">
+              <Trophy className="h-8 w-8 text-amber-500 mr-2" />
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-800 bg-clip-text text-transparent mb-4 text-balance">
+                Escolha seu candidato
+              </h2>
+            </div>
+            <p className="text-lg text-slate-700 text-pretty">
               Vote de forma segura e transparente. Seu voto é anônimo e conta em tempo real.
             </p>
           </div>
@@ -48,10 +47,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <footer className="border-t bg-white py-8 mt-16">
-        <div className="container mx-auto px-4 text-center text-sm text-gray-600">
-          <p>Sistema de Votação Online - Eleições 2025</p>
-          <p className="mt-2">Votação segura e transparente</p>
+      <footer className="border-t border-slate-200 bg-gradient-to-r from-slate-900 to-blue-950 py-8 mt-16">
+        <div className="container mx-auto px-4 text-center">
+          <Logo size="sm" showText={true} className="justify-center mb-4" />
+          <p className="text-sm text-amber-400 font-medium">Concurso de Talentos</p>
+          <p className="text-xs text-slate-300 mt-1">Votação segura e transparente <br /> By: NEXUS Tech - +245 956 338 807</p>
         </div>
       </footer>
     </div>
