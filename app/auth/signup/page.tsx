@@ -11,6 +11,9 @@ import { createClient } from "@/lib/supabase/client"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { UserPlus, ArrowLeft } from "lucide-react"
 
+// Força a página a ser renderizada dinamicamente (não pré-renderizada)
+export const dynamic = 'force-dynamic'
+
 export default function SignupPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")

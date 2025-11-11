@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { CandidateCard } from "@/components/candidate-card"
 import { VoteConfirmDialog } from "@/components/vote-confirm-dialog"
 import { SuccessDialog } from "@/components/success-dialog"
-import { supabase } from "@/lib/supabase/client"
+import { createClient } from "@/lib/supabase/client"
 
 interface Candidate {
   id: string
@@ -38,6 +38,7 @@ export function VotingSection() {
     const from = nextPage * pageSize
     const to = from + pageSize - 1
     // Não buscar campos pesados (fotos) na listagem - serão carregadas via API separada
+    const supabase = createClient()
     const { data } = await supabase
       .from("candidates")
       .select("id, name, number, city, stage_name, talent, bio")
