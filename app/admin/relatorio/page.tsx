@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { ArrowLeft, Printer } from "lucide-react"
 import { PrintButton } from "@/components/print-button"
+import { AdminThemeWrapper } from "@/components/admin-theme-wrapper"
 
 export const revalidate = 0
 
@@ -24,8 +25,9 @@ export default async function RelatorioPage() {
   const total = rows.reduce((acc, r) => acc + r.votes, 0)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10">
+    <AdminThemeWrapper>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+        <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/admin" className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100">
@@ -43,7 +45,7 @@ export default async function RelatorioPage() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8 space-y-6">
+        <div className="container mx-auto px-4 py-8 space-y-6">
         <Card>
           <CardHeader>
             <CardTitle>Resumo Geral</CardTitle>
@@ -77,7 +79,9 @@ export default async function RelatorioPage() {
                   <tr className="bg-gray-50 text-left">
                     <th className="px-4 py-3 border-b">Número</th>
                     <th className="px-4 py-3 border-b">Nome</th>
-                    <th className="px-4 py-3 border-b">Partido</th>
+                    <th className="px-4 py-3 border-b">Nome Artístico</th>
+                    <th className="px-4 py-3 border-b">Cidade</th>
+                    <th className="px-4 py-3 border-b">Talento</th>
                     <th className="px-4 py-3 border-b">Votos</th>
                     <th className="px-4 py-3 border-b">Percentual</th>
                   </tr>
@@ -89,14 +93,16 @@ export default async function RelatorioPage() {
                       <tr key={candidate.id} className="hover:bg-gray-50">
                         <td className="px-4 py-3 border-b">{candidate.number}</td>
                         <td className="px-4 py-3 border-b">{candidate.name}</td>
-                        <td className="px-4 py-3 border-b">{candidate.party}</td>
+                        <td className="px-4 py-3 border-b">{candidate.stage_name || "-"}</td>
+                        <td className="px-4 py-3 border-b">{candidate.city || "-"}</td>
+                        <td className="px-4 py-3 border-b">{candidate.talent || "-"}</td>
                         <td className="px-4 py-3 border-b">{votes}</td>
                         <td className="px-4 py-3 border-b">{pct}%</td>
                       </tr>
                     )
                   })}
                   <tr className="font-semibold bg-gray-50">
-                    <td className="px-4 py-3 border-b" colSpan={3}>
+                    <td className="px-4 py-3 border-b" colSpan={5}>
                       Total
                     </td>
                     <td className="px-4 py-3 border-b">{total}</td>
@@ -107,8 +113,9 @@ export default async function RelatorioPage() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
-    </div>
+    </AdminThemeWrapper>
   )
 }
 

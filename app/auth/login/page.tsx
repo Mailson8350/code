@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { createClient } from "@/lib/supabase/client"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { LogIn, ArrowLeft } from "lucide-react"
+import { AdminThemeWrapper } from "@/components/admin-theme-wrapper"
 
 // Força a página a ser renderizada dinamicamente (não pré-renderizada)
 export const dynamic = 'force-dynamic'
@@ -50,7 +51,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 flex items-center justify-center p-4">
+    <AdminThemeWrapper>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <Link
           href="/"
@@ -126,7 +128,8 @@ export default function LoginPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+      </div>
+    </AdminThemeWrapper>
   )
 }
 

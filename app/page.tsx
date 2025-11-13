@@ -5,7 +5,7 @@ import { Trophy, BarChart3 } from "lucide-react"
 
 export default async function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+    <div className="min-h-screen bg-background">
       <header className="border-b border-slate-200/50 bg-gradient-to-r from-slate-900/95 via-blue-950/95 to-slate-900/95 backdrop-blur-sm sticky top-0 z-10 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -34,11 +34,11 @@ export default async function Home() {
           <div className="text-center max-w-3xl mx-auto mb-12">
             <div className="inline-flex items-center justify-center mb-4">
               <Trophy className="h-8 w-8 text-amber-500 mr-2" />
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-800 bg-clip-text text-transparent mb-4 text-balance">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent mb-4 text-balance">
                 Escolha seu candidato
               </h2>
             </div>
-            <p className="text-lg text-slate-700 text-pretty">
+            <p className="text-lg text-foreground/80 text-pretty">
               Vote de forma segura e transparente. Seu voto é anônimo e conta em tempo real.
             </p>
           </div>

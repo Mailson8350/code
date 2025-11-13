@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { createClient } from "@/lib/supabase/client"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { UserPlus, ArrowLeft } from "lucide-react"
+import { AdminThemeWrapper } from "@/components/admin-theme-wrapper"
 
 // Força a página a ser renderizada dinamicamente (não pré-renderizada)
 export const dynamic = 'force-dynamic'
@@ -63,7 +64,8 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+    <AdminThemeWrapper>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <Link
           href="/"
@@ -149,7 +151,7 @@ export default function SignupPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </AdminThemeWrapper>
   )
 }
 

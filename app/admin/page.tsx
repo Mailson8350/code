@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import { AdminDashboard } from "@/components/admin-dashboard"
+import { AdminThemeWrapper } from "@/components/admin-theme-wrapper"
 
 export default async function AdminPage() {
   const supabase = await createClient()
@@ -27,5 +28,9 @@ export default async function AdminPage() {
     votes: voteCounts[candidate.id] || 0,
   }))
 
-  return <AdminDashboard candidates={results} totalVotes={totalVotes || 0} userEmail="Admin" />
+  return (
+    <AdminThemeWrapper>
+      <AdminDashboard candidates={results} totalVotes={totalVotes || 0} userEmail="Admin" />
+    </AdminThemeWrapper>
+  )
 }
