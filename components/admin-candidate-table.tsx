@@ -20,7 +20,9 @@ interface Candidate {
   id: string
   name: string
   number: number
-  party: string
+  stage_name?: string
+  city?: string
+  talent?: string
   bio: string
   votes: number
 }
@@ -72,7 +74,9 @@ export function AdminCandidateTable({ candidates, onCandidateDeleted }: AdminCan
             <TableRow>
               <TableHead>Número</TableHead>
               <TableHead>Nome</TableHead>
-              <TableHead>Partido</TableHead>
+              <TableHead>Nome Artístico</TableHead>
+              <TableHead>Cidade</TableHead>
+              <TableHead>Talento</TableHead>
               <TableHead>Votos</TableHead>
               <TableHead className="text-right">Ações</TableHead>
             </TableRow>
@@ -93,7 +97,9 @@ export function AdminCandidateTable({ candidates, onCandidateDeleted }: AdminCan
                     </Badge>
                   </TableCell>
                   <TableCell className="font-medium">{candidate.name}</TableCell>
-                  <TableCell className="text-sm text-gray-600">{candidate.party}</TableCell>
+                  <TableCell className="text-sm text-gray-600">{candidate.stage_name || "-"}</TableCell>
+                  <TableCell className="text-sm text-gray-600">{candidate.city || "-"}</TableCell>
+                  <TableCell className="text-sm text-gray-600">{candidate.talent || "-"}</TableCell>
                   <TableCell>
                     <Badge className="bg-blue-600">{candidate.votes}</Badge>
                   </TableCell>
