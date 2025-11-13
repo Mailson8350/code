@@ -151,6 +151,7 @@ export default function SignupPage() {
           </CardContent>
         </Card>
       </div>
+      </div>
     </AdminThemeWrapper>
   )
 }
