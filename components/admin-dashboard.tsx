@@ -5,10 +5,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { AdminCandidateTable } from "@/components/admin-candidate-table"
 import { AddCandidateDialog } from "@/components/add-candidate-dialog"
-import { Users, UserPlus, LogOut, Home, TrendingUp } from "lucide-react"
+import { Users, UserPlus, LogOut, Home, TrendingUp, RefreshCcw } from "lucide-react"
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 interface Candidate {
   id: string
@@ -31,6 +42,7 @@ export function AdminDashboard({ candidates: initialCandidates, totalVotes, user
   const [candidates, setCandidates] = useState(initialCandidates)
   const [isOpen, setIsOpen] = useState<boolean | null>(null)
   const [showAddDialog, setShowAddDialog] = useState(false)
+  const [isResetting, setIsResetting] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -74,6 +86,24 @@ export function AdminDashboard({ candidates: initialCandidates, totalVotes, user
     router.refresh()
   }
 
+  const handleResetElection = async () => {
+    setIsResetting(true)
+    try {
+      const response = await fetch("/api/vote/reset", { method: "POST" })
+      const payload = await response.json().catch(() => null)
+      if (!response.ok) {
+        throw new Error(payload?.error ?? "Erro ao reiniciar votação")
+      }
+      setIsOpen(true)
+      router.refresh()
+      alert("Votação reiniciada com sucesso!")
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Erro ao reiniciar votação")
+    } finally {
+      setIsResetting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
       {/* Header */}
@@ -96,6 +126,29 @@ export function AdminDashboard({ candidates: initialCandidates, totalVotes, user
               <Button variant={isOpen ? "destructive" : "default"} onClick={toggleElection} disabled={isOpen === null}>
                 {isOpen ? "Encerrar Votação" : "Iniciar Votação"}
               </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="secondary" disabled={isOpen === null} className="border border-slate-500/40">
+                    <RefreshCcw className="h-4 w-4 mr-2" />
+                    Reiniciar
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Reiniciar votação?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Esta ação encerra a votação atual, remove todos os votos registrados e reabre uma nova votação. Essa operação não pode ser
+                      desfeita.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel disabled={isResetting}>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleResetElection} disabled={isResetting}>
+                      {isResetting ? "Reiniciando..." : "Confirmar"}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
               <Button variant="outline" asChild>
                 <Link href="/">
                   <Home className="h-4 w-4 mr-2" />
